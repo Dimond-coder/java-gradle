@@ -1,9 +1,11 @@
-name: Build Java-Gradle
+name: Java-Gradle
+
 on:
-  push: [master]
-  pull-request: [master]
+  push: [ master ]
+
 jobs:
   buid:
+    #hosted-runner
     runs-on: ubuntu-latest
 
     steps:
