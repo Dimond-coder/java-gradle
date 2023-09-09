@@ -1,9 +1,7 @@
 name: Build Java-Gradle
-
 on:
   push: [master]
   pull-request: [master]
-
 jobs:
   buid:
     runs-on: ubuntu-latest
