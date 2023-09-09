@@ -9,6 +9,7 @@ jobs:
     runs-on: ubuntu-latest
 #
     steps:
+      # This step uses the `actions/checkout` action to download a copy of your repository on the runner.
       - uses: actions/checkout@v3
       # This step uses the `actions/setup-java` action to configure the Eclipse Temurin (Java) 17 JDK by Eclipse Adoptium.
       - name: Set up JDK 17
@@ -17,7 +18,10 @@ jobs:
           java-version: '17'
           distribution: 'temurin'
       # The "Validate Gradle wrapper" step validates the checksums of Gradle Wrapper JAR files present in the source tree.
-      #
+      - name: Validate Gradle wrapper
+        uses: gradle/wrapper-validation-action@a8451eeda314d0568b5340498b36edf147a8f0d692c5ff58082d477abe9146e4
       # The "Build with Gradle" step does a build using the `gradle/gradle-build-action` action provided by the Gradle organization on GitHub. The action takes care of invoking Gradle, collecting results, and caching state between jobs. For more information see [`gradle/gradle-build-action`](https://github.com/gradle/gradle-build-action).
-      #run: sdk install gradle
-      #run: gradle wrapper
+      - name: Build with Gradle
+        uses: gradle/gradle-build-action@749f47bda3e44aa060e82d7b3ef7e40d953bd629
+        with:
+          arguments: build
